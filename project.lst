@@ -1,0 +1,532 @@
+     Assembly listing for: project.mas
+                Assembled: Wed Jun 02 22:57:09 GMT+02:00 2021
+
+000 115E |                 LOAD plus                // operations
+001 6000 |                 OUTPUT                    
+002 115F |                 LOAD min                  
+003 6000 |                 OUTPUT                    
+004 1160 |                 LOAD multiply             
+005 6000 |                 OUTPUT                    
+006 1161 |                 LOAD division             
+007 6000 |                 OUTPUT                    
+008 1162 |                 LOAD mini                 
+009 6000 |                 OUTPUT                    
+00A 1163 |                 LOAD maxi                 
+00B 6000 |                 OUTPUT                    
+00C 1158 |                 LOAD trig                 
+00D 6000 |                 OUTPUT                    
+00E 1164 |                 LOAD validation           
+00F 6000 |                 OUTPUT                    
+010 5000 |                 INPUT                     
+011 2153 |                 STORE operation           
+         |                                          
+         |                                          / check if +
+012 1153 |                 LOAD operation            
+013 415E |                 SUBT plus                 
+014 2165 |                 STORE int                 
+015 1165 |                 LOAD int                  
+016 8400 |                 SKIPCOND 400              
+017 9028 |                 JUMP check_minus          
+018 901A |                 JUMP addition             
+019 7000 |                 HALT                      
+         |                                          
+         |                                          / addition
+01A 5000 |  addition       INPUT                     
+01B 2166 |                 STORE num1                
+01C 1166 |                 LOAD num1                 
+01D 6000 |                 OUTPUT                    
+01E 5000 |                 INPUT                     
+01F 2167 |                 STORE num2                
+020 1167 |                 LOAD num2                 
+021 6000 |                 OUTPUT                    
+022 1166 |                 LOAD num1                 
+023 3167 |                 ADD num2                  
+024 2168 |                 STORE sum                 
+025 1168 |                 LOAD sum                  
+026 6000 |                 OUTPUT                    
+027 7000 |                 HALT                      
+         |                                          
+         |                                          / check if -
+028 1153 |  check_minus    LOAD operation            
+029 415F |                 SUBT min                  
+02A 2165 |                 STORE int                 
+02B 1165 |                 LOAD int                  
+02C 8400 |                 SKIPCOND 400              
+02D 903E |                 JUMP check_mult           
+02E 9030 |                 JUMP minus                
+02F 7000 |                 HALT                      
+         |                                          
+         |                                          / subtraction
+030 5000 |  minus          INPUT                     
+031 2166 |                 STORE num1                
+032 1166 |                 LOAD num1                 
+033 6000 |                 OUTPUT                    
+034 5000 |                 INPUT                     
+035 2167 |                 STORE num2                
+036 1167 |                 LOAD num2                 
+037 6000 |                 OUTPUT                    
+038 1166 |                 LOAD num1                 
+039 4167 |                 SUBT num2                 
+03A 2168 |                 STORE sum                 
+03B 1168 |                 LOAD sum                  
+03C 6000 |                 OUTPUT                    
+03D 7000 |                 HALT                      
+         |                                          
+         |                                          / check if *
+03E 1153 |  check_mult     LOAD operation            
+03F 4160 |                 SUBT multiply             
+040 2165 |                 STORE int                 
+041 1165 |                 LOAD int                  
+042 8400 |                 SKIPCOND 400              
+043 9059 |                 JUMP check_div            
+044 9046 |                 JUMP times                
+045 7000 |                 HALT                      
+         |                                          
+         |                                          / multiplication
+046 5000 |  times          INPUT                     
+047 2166 |                 STORE num1                
+048 1166 |                 LOAD num1                 
+049 6000 |                 OUTPUT                    
+04A 5000 |                 INPUT                     
+04B 2167 |                 STORE num2                
+04C 1167 |                 LOAD num2                 
+04D 6000 |                 OUTPUT                    
+04E 1168 |  loop           LOAD sum                  
+04F 3166 |                 ADD num1                  
+050 2168 |                 STORE sum                 
+051 1167 |                 LOAD num2                 
+052 416B |                 SUBT one                  
+053 2167 |                 STORE num2                
+054 8400 |                 SKIPCOND 400              
+055 904E |                 JUMP loop                 
+056 1168 |                 LOAD sum                  
+057 6000 |                 OUTPUT                    
+058 7000 |                 HALT                      
+         |                                          
+         |                                          
+         |                                          
+         |                                          /check if divv
+059 1153 |  check_div      LOAD operation            
+05A 4161 |                 SUBT division             
+05B 2165 |                 STORE int                 
+05C 1165 |                 LOAD int                  
+05D 8400 |                 SKIPCOND 400              
+05E 9075 |                 JUMP check_mini           
+05F 9061 |                 JUMP divise               
+060 7000 |                 HALT                      
+         |                                          
+         |                                          /divison
+061 5000 |  divise         INPUT                     
+062 2166 |                 STORE num1                
+063 1166 |                 LOAD num1                 
+064 6000 |                 OUTPUT                    
+065 5000 |                 INPUT                     
+066 2167 |                 STORE num2                
+067 1167 |                 LOAD num2                 
+068 6000 |                 OUTPUT                    
+069 1166 |  div_loop       LOAD num1                 
+06A 4167 |                 SUBT num2                 
+06B 2166 |                 STORE num1                
+06C 115C |                 LOAD count                
+06D 316B |                 ADD one                   
+06E 215C |                 STORE count               
+06F 1166 |                 LOAD num1                 
+070 8400 |                 SKIPCOND 400              
+071 9069 |                 JUMP div_loop             
+072 115C |                 LOAD count                
+073 6000 |                 OUTPUT                    
+074 7000 |                 HALT                      
+         |                                          
+         |                                          / check if minimum 
+075 1153 |  check_mini     LOAD operation            
+076 4162 |                 SUBT mini                 
+077 2165 |                 STORE int                 
+078 1165 |                 LOAD int                  
+079 8400 |                 SKIPCOND 400              
+07A 9091 |                 JUMP check_maxi           
+07B 907D |                 JUMP minimum              
+07C 7000 |                 HALT                      
+         |                                          
+         |                                          / minimum
+07D 5000 |  minimum        INPUT                     
+07E 2166 |                 STORE num1                
+07F 1166 |                 LOAD num1                 
+080 6000 |                 OUTPUT                    
+081 5000 |                 INPUT                     
+082 2167 |                 STORE num2                
+083 1167 |                 LOAD num2                 
+084 6000 |                 OUTPUT                    
+085 1166 |                 LOAD num1                 
+086 4167 |                 SUBT num2                 
+087 2169 |                 STORE var                 
+088 1169 |                 LOAD var                  
+089 8000 |                 SKIPCOND 000              
+08A 908E |                 JUMP n2                   
+08B 1166 |                 LOAD num1                 
+08C 6000 |                 OUTPUT                    
+08D 7000 |                 HALT                      
+08E 1167 |  n2             LOAD num2                 
+08F 6000 |                 OUTPUT                    
+090 7000 |                 HALT                      
+         |                                          
+         |                                          
+         |                                          / check if maxim
+091 1153 |  check_maxi     LOAD operation            
+092 4162 |                 SUBT mini                 
+093 2165 |                 STORE int                 
+094 1165 |                 LOAD int                  
+095 8400 |                 SKIPCOND 400              
+096 90AE |                 JUMP detect               
+097 9099 |                 JUMP maximum              
+098 7000 |                 HALT                      
+         |                                          
+         |                                          /maximum
+099 5000 |  maximum        INPUT                     
+09A 2166 |                 STORE num1                
+09B 1166 |                 LOAD num1                 
+09C 6000 |                 OUTPUT                    
+09D 5000 |                 INPUT                     
+09E 2167 |                 STORE num2                
+09F 1167 |                 LOAD num2                 
+0A0 6000 |                 OUTPUT                    
+0A1 1166 |                 LOAD num1                 
+0A2 4167 |                 SUBT num2                 
+0A3 2169 |                 STORE var                 
+0A4 1169 |                 LOAD var                  
+0A5 8800 |                 SKIPCOND 800              
+0A6 90AA |                 JUMP nu2                  
+0A7 1166 |                 LOAD num1                 
+0A8 6000 |                 OUTPUT                    
+0A9 7000 |                 HALT                      
+0AA 1167 |  nu2            LOAD num2                 
+0AB 6000 |                 OUTPUT                    
+0AC 7000 |                 HALT                      
+         |                                          
+         |                                          
+0AD 7000 |  check_pow      HALT                      
+         |                                          
+         |                                          
+         |                                          / check if triangle detection is chosen
+0AE 1153 |  detect         LOAD operation            
+0AF 4164 |                 SUBT validation           
+0B0 2165 |                 STORE int                 
+0B1 1165 |                 LOAD int                  
+0B2 8400 |                 SKIPCOND 400              
+0B3 90EF |                 JUMP trig_operation       
+0B4 90B6 |                 JUMP validaited           
+0B5 7000 |                 HALT                      
+         |                                          
+         |                                          /start the detection process
+0B6 116B |  validaited     LOAD one                  
+0B7 6000 |                 OUTPUT                    
+0B8 5000 |                 INPUT                     
+0B9 216E |                 STORE firstside           
+0BA 116E |                 LOAD firstside            
+0BB 6000 |                 OUTPUT                    
+0BC 116C |                 LOAD two                  
+0BD 6000 |                 OUTPUT                    
+0BE 5000 |                 INPUT                     
+0BF 216F |                 STORE secside             
+0C0 116F |                 LOAD secside              
+0C1 6000 |                 OUTPUT                    
+0C2 116D |                 LOAD three                
+0C3 6000 |                 OUTPUT                    
+0C4 5000 |                 INPUT                     
+0C5 2170 |                 STORE thirdside           
+0C6 1170 |                 LOAD thirdside            
+0C7 6000 |                 OUTPUT                    
+         |                                          
+0C8 116E |                 LOAD firstside            
+0C9 316F |                 ADD secside               
+0CA 2173 |                 STORE one&2               
+         |                                          
+0CB 116E |                 LOAD firstside            
+0CC 3170 |                 ADD thirdside             
+0CD 2172 |                 STORE one&3               
+         |                                          
+0CE 116F |                 LOAD secside              
+0CF 3170 |                 ADD thirdside             
+0D0 2171 |                 STORE two&3               
+         |                                          
+0D1 1173 |                 LOAD one&2                
+0D2 4170 |                 SUBT thirdside            
+0D3 2174 |                 STORE valid               
+0D4 1174 |                 LOAD valid                
+0D5 8000 |                 SKIPCOND 000              
+0D6 90DA |                 JUMP valid2               
+0D7 1176 |                 LOAD no                   
+0D8 6000 |                 OUTPUT                    
+0D9 7000 |                 HALT                      
+         |                                          
+0DA 1172 |  valid2         LOAD one&3                
+0DB 416F |                 SUBT secside              
+0DC 2174 |                 STORE valid               
+0DD 1174 |                 LOAD valid                
+0DE 8000 |                 SKIPCOND 000              
+0DF 90E3 |                 JUMP valid3               
+0E0 1176 |                 LOAD no                   
+0E1 6000 |                 OUTPUT                    
+0E2 7000 |                 HALT                      
+         |                                          
+0E3 1171 |  valid3         LOAD two&3                
+0E4 416E |                 SUBT firstside            
+0E5 2174 |                 STORE valid               
+0E6 1174 |                 LOAD valid                
+0E7 8000 |                 SKIPCOND 000              
+0E8 90EC |                 JUMP validall             
+0E9 1176 |                 LOAD no                   
+0EA 6000 |                 OUTPUT                    
+0EB 7000 |                 HALT                      
+         |                                          
+0EC 1175 |  validall       LOAD yes                  
+0ED 6000 |                 OUTPUT                    
+0EE 7000 |                 HALT                      
+         |                                          
+         |                                          
+         |                                          /check if trig operation
+0EF 1153 |  trig_operation LOAD operation            
+0F0 4158 |                 SUBT trig                 
+0F1 2165 |                 STORE int                 
+0F2 1165 |                 LOAD int                  
+0F3 8400 |                 SKIPCOND 400              
+0F4 914F |                 JUMP end                  
+0F5 90F7 |                 JUMP trig_beg             
+0F6 7000 |                 HALT                      
+         |                                          / start diplaying s,c,t to choose and calculate chosen
+0F7 1154 |  trig_beg       LOAD S                    
+0F8 6000 |                 OUTPUT                    
+0F9 1157 |                 LOAD C                    
+0FA 6000 |                 OUTPUT                    
+0FB 1159 |                 LOAD t                    
+0FC 6000 |                 OUTPUT                    
+0FD 5000 |                 INPUT                     
+0FE 216A |                 STORE which_trig          
+         |                                          / take the sides
+0FF 1155 |                 LOAD O                    
+100 6000 |                 OUTPUT                    
+101 5000 |                 INPUT                     
+102 2151 |                 STORE opposite            
+103 1151 |                 LOAD opposite             
+104 6000 |                 OUTPUT                    
+105 1156 |                 LOAD H                    
+106 6000 |                 OUTPUT                    
+107 5000 |                 INPUT                     
+108 2150 |                 STORE Hypotenus           
+109 1150 |                 LOAD Hypotenus            
+10A 6000 |                 OUTPUT                    
+10B 115A |                 LOAD A                    
+10C 6000 |                 OUTPUT                    
+10D 5000 |                 INPUT                     
+10E 2152 |                 STORE adjacent            
+10F 1152 |                 LOAD adjacent             
+110 6000 |                 OUTPUT                    
+111 115D |                 LOAD space                
+112 6000 |                 OUTPUT                    
+         |                                          
+         |                                          / check if its sine
+113 116A |                 LOAD which_trig           
+114 4154 |                 SUBT S                    
+115 215B |                 STORE check               
+116 115B |                 LOAD check                
+117 8400 |                 SKIPCOND 400              
+118 9127 |                 JUMP cos                  
+119 911B |                 JUMP loop_sin             
+11A 7000 |                 HALT                      
+         |                                          
+         |                                          / calculate sine
+11B 1151 |  loop_sin       LOAD opposite             
+11C 4150 |                 SUBT Hypotenus            
+11D 2151 |                 STORE opposite            
+11E 115C |                 LOAD count                
+11F 316B |                 ADD one                   
+120 215C |                 STORE count               
+121 1151 |                 LOAD opposite             
+122 8400 |                 SKIPCOND 400              
+123 911B |                 JUMP loop_sin             
+124 115C |                 LOAD count                
+125 6000 |                 OUTPUT                    
+126 7000 |                 HALT                      
+         |                                          
+         |                                          /check if cosine
+127 116A |  cos            LOAD which_trig           
+128 4157 |                 SUBT C                    
+129 215B |                 STORE check               
+12A 115B |                 LOAD check                
+12B 8400 |                 SKIPCOND 400              
+12C 913B |                 JUMP tan                  
+12D 912F |                 JUMP cos_loop             
+12E 7000 |                 HALT                      
+         |                                          
+         |                                          /calculate cosine
+12F 1152 |  cos_loop       LOAD adjacent             
+130 4150 |                 SUBT Hypotenus            
+131 2152 |                 STORE adjacent            
+132 115C |                 LOAD count                
+133 316B |                 ADD one                   
+134 215C |                 STORE count               
+135 1152 |                 LOAD adjacent             
+136 8400 |                 SKIPCOND 400              
+137 912F |                 JUMP cos_loop             
+138 115C |                 LOAD count                
+139 6000 |                 OUTPUT                    
+13A 7000 |                 HALT                      
+         |                                          
+         |                                          /check if tan
+13B 116A |  tan            LOAD which_trig           
+13C 4159 |                 SUBT t                    
+13D 215B |                 STORE check               
+13E 115B |                 LOAD check                
+13F 8400 |                 SKIPCOND 400              
+140 914F |                 JUMP end                  
+141 9143 |                 JUMP loop_tan             
+142 7000 |                 HALT                      
+         |                                          
+         |                                          /calculate tan
+143 1151 |  loop_tan       LOAD opposite             
+144 4152 |                 SUBT adjacent             
+145 2151 |                 STORE opposite            
+146 115C |                 LOAD count                
+147 316B |                 ADD one                   
+148 215C |                 STORE count               
+149 1151 |                 LOAD opposite             
+14A 8400 |                 SKIPCOND 400              
+14B 9143 |                 JUMP loop_tan             
+14C 115C |                 LOAD count                
+14D 6000 |                 OUTPUT                    
+14E 7000 |                 HALT                      
+         |                                          
+14F 7000 |  end            HALT                      
+         |                                          
+         |                                          
+         |                                          
+         |                                          
+         |                                          
+150 0000 |  Hypotenus      DEC 0                     
+151 0000 |  opposite       DEC 0                     
+152 0000 |  adjacent       DEC 0                     
+153 0000 |  operation      DEC 0                     
+154 0073 |  S              DEC 115                   
+155 004F |  O              DEC 79                    
+156 0048 |  H              DEC 72                    
+157 0063 |  C              DEC 99                    
+158 0054 |  trig           DEC 84                    
+159 0074 |  t              DEC 116                   
+15A 0041 |  A              DEC 65                    
+15B 0000 |  check          DEC 0                     
+15C 0000 |  count          DEC 0                     
+15D 0020 |  space          DEC 32                    
+15E 002B |  plus           DEC 43                    
+15F 002D |  min            DEC 45                    
+160 002A |  multiply       DEC 42                    
+161 002F |  division       DEC 47                    
+162 003C |  mini           DEC 60                    
+163 003E |  maxi           DEC 62                    
+164 003F |  validation     DEC 63                    
+165 0000 |  int            DEC 0                     
+166 0000 |  num1           DEC 0                     
+167 0000 |  num2           DEC 0                     
+168 0000 |  sum            DEC 0                     
+169 0000 |  var            DEC 0                     
+16A 0000 |  which_trig     DEC 0                     
+16B 0001 |  one            DEC 1                     
+16C 0002 |  two            DEC 2                     
+16D 0003 |  three          DEC 3                     
+16E 0000 |  firstside      DEC 0                     
+16F 0000 |  secside        DEC 0                     
+170 0000 |  thirdside      DEC 0                     
+171 0000 |  two&3          DEC 0                     
+172 0000 |  one&3          DEC 0                     
+173 0000 |  one&2          DEC 0                     
+174 0000 |  valid          DEC 0                     
+175 0001 |  yes            DEC 1                     
+176 0000 |  no             DEC 0                     
+
+Assembly successful.
+
+         SYMBOL TABLE
+         ----------------------------------------------------------
+          Symbol         | Defined | References 
+         ----------------+---------+-------------------------------
+          A              |   15A   | 10B
+          C              |   157   | 0F9, 128
+          H              |   156   | 105
+          Hypotenus      |   150   | 108, 109, 11C, 130
+          O              |   155   | 0FF
+          S              |   154   | 0F7, 114
+          addition       |   01A   | 018
+          adjacent       |   152   | 10E, 10F, 12F, 131, 135, 144
+          check          |   15B   | 115, 116, 129, 12A, 13D, 13E
+          check_div      |   059   | 043
+          check_maxi     |   091   | 07A
+          check_mini     |   075   | 05E
+          check_minus    |   028   | 017
+          check_mult     |   03E   | 02D
+          check_pow      |   0AD   | 
+          cos            |   127   | 118
+          cos_loop       |   12F   | 12D, 137
+          count          |   15C   | 06C, 06E, 072, 11E, 120, 124, 
+                         |         | 132, 134, 138, 146, 148, 14C
+          detect         |   0AE   | 096
+          div_loop       |   069   | 071
+          divise         |   061   | 05F
+          division       |   161   | 006, 05A
+          end            |   14F   | 0F4, 140
+          firstside      |   16E   | 0B9, 0BA, 0C8, 0CB, 0E4
+          int            |   165   | 014, 015, 02A, 02B, 040, 041, 
+                         |         | 05B, 05C, 077, 078, 093, 094, 
+                         |         | 0B0, 0B1, 0F1, 0F2
+          loop           |   04E   | 055
+          loop_sin       |   11B   | 119, 123
+          loop_tan       |   143   | 141, 14B
+          maxi           |   163   | 00A
+          maximum        |   099   | 097
+          min            |   15F   | 002, 029
+          mini           |   162   | 008, 076, 092
+          minimum        |   07D   | 07B
+          minus          |   030   | 02E
+          multiply       |   160   | 004, 03F
+          n2             |   08E   | 08A
+          no             |   176   | 0D7, 0E0, 0E9
+          nu2            |   0AA   | 0A6
+          num1           |   166   | 01B, 01C, 022, 031, 032, 038, 
+                         |         | 047, 048, 04F, 062, 063, 069, 
+                         |         | 06B, 06F, 07E, 07F, 085, 08B, 
+                         |         | 09A, 09B, 0A1, 0A7
+          num2           |   167   | 01F, 020, 023, 035, 036, 039, 
+                         |         | 04B, 04C, 051, 053, 066, 067, 
+                         |         | 06A, 082, 083, 086, 08E, 09E, 
+                         |         | 09F, 0A2, 0AA
+          one            |   16B   | 052, 06D, 0B6, 11F, 133, 147
+          one&2          |   173   | 0CA, 0D1
+          one&3          |   172   | 0CD, 0DA
+          operation      |   153   | 011, 012, 028, 03E, 059, 075, 
+                         |         | 091, 0AE, 0EF
+          opposite       |   151   | 102, 103, 11B, 11D, 121, 143, 
+                         |         | 145, 149
+          plus           |   15E   | 000, 013
+          secside        |   16F   | 0BF, 0C0, 0C9, 0CE, 0DB
+          space          |   15D   | 111
+          sum            |   168   | 024, 025, 03A, 03B, 04E, 050, 
+                         |         | 056
+          t              |   159   | 0FB, 13C
+          tan            |   13B   | 12C
+          thirdside      |   170   | 0C5, 0C6, 0CC, 0CF, 0D2
+          three          |   16D   | 0C2
+          times          |   046   | 044
+          trig           |   158   | 00C, 0F0
+          trig_beg       |   0F7   | 0F5
+          trig_operation |   0EF   | 0B3
+          two            |   16C   | 0BC
+          two&3          |   171   | 0D0, 0E3
+          valid          |   174   | 0D3, 0D4, 0DC, 0DD, 0E5, 0E6
+          valid2         |   0DA   | 0D6
+          valid3         |   0E3   | 0DF
+          validaited     |   0B6   | 0B4
+          validall       |   0EC   | 0E8
+          validation     |   164   | 00E, 0AF
+          var            |   169   | 087, 088, 0A3, 0A4
+          which_trig     |   16A   | 0FE, 113, 127, 13B
+          yes            |   175   | 0EC
+         ----------------------------------------------------------
+
+

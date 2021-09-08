@@ -1,0 +1,439 @@
+load plus // operations
+output
+load min
+output
+load multiply
+output
+load division
+output
+load mini
+output
+load maxi
+output
+load trig
+output
+load validation
+output
+input
+store operation
+
+/ check if +
+load operation
+subt plus
+store int
+load int 
+skipcond 400
+jump check_minus
+jump addition
+halt
+
+/ addition
+addition, input
+store num1
+load num1
+output
+input
+store num2
+load num2
+output
+load num1
+add num2
+store sum
+load sum
+output
+halt
+
+/ check if -
+check_minus, load operation
+subt min
+store int
+load int 
+skipcond 400
+jump check_mult
+jump minus
+halt
+
+/ subtraction
+minus, input
+store num1
+load num1
+output
+input
+store num2
+load num2
+output
+load num1
+subt num2
+store sum
+load sum
+output
+halt
+
+/ check if *
+check_mult, load operation
+subt multiply
+store int
+load int 
+skipcond 400
+jump check_div
+jump times
+halt
+
+/ multiplication
+times, input
+store num1
+load num1
+output
+input
+store num2
+load num2
+output
+loop, load sum
+add num1
+store sum
+load num2
+subt one
+store num2
+skipcond 400
+jump loop
+load sum
+output
+halt
+
+
+
+/check if divv
+check_div, load operation
+subt division
+store int
+load int 
+skipcond 400
+jump check_mini
+jump divise
+halt
+
+/divison
+divise, input
+store num1
+load num1
+output
+input
+store num2
+load num2
+output
+div_loop, load num1
+subt num2
+store num1
+load count
+add one
+store count
+load num1
+skipcond 400
+jump div_loop
+load count
+output
+halt
+
+/ check if minimum 
+check_mini, load operation
+subt mini
+store int
+load int 
+skipcond 400
+jump check_maxi
+jump minimum
+halt
+
+/ minimum
+minimum, input
+store num1
+load num1
+output
+input
+store num2
+load num2
+output
+load num1
+subt num2
+store var
+load var 
+skipcond 000
+jump n2
+load num1
+output
+halt
+n2, load num2
+output
+halt
+
+
+/ check if maxim
+check_maxi, load operation
+subt mini
+store int
+load int 
+skipcond 400
+jump detect
+jump maximum
+halt
+
+/maximum
+maximum, input
+store num1
+load num1
+output
+input
+store num2
+load num2
+output
+load num1
+subt num2
+store var
+load var 
+skipcond 800
+jump nu2
+load num1
+output
+halt
+nu2, load num2
+output
+halt
+
+
+check_pow, halt
+
+
+/ check if triangle detection is chosen
+detect, load operation
+subt validation
+store int
+load int 
+skipcond 400
+jump trig_operation
+jump validaited
+halt
+
+/start the detection process
+validaited, load one
+output
+input
+store firstside
+load firstside
+output
+load two
+output
+input
+store secside
+load secside
+output
+load three
+output
+input
+store thirdside
+load thirdside
+output
+
+load firstside
+add secside
+store one&2
+
+load firstside
+add thirdside
+store one&3
+
+load secside
+add thirdside
+store two&3
+
+load one&2
+subt thirdside
+store valid 
+load valid
+skipcond 000
+jump valid2
+load no
+output
+halt
+
+valid2, load one&3
+subt secside
+store valid 
+load valid
+skipcond 000
+jump valid3
+load no
+output
+halt
+
+valid3, load two&3
+subt firstside
+store valid 
+load valid
+skipcond 000
+jump validall
+load no
+output
+halt
+
+validall, load yes
+output
+halt
+
+
+/check if trig operation
+trig_operation, load operation
+subt trig
+store int
+load int 
+skipcond 400
+jump end
+jump trig_beg
+halt
+/ start diplaying s,c,t to choose and calculate chosen
+trig_beg, load S
+output
+load C
+output
+load t
+output
+input
+store which_trig
+/ take the sides
+load O
+output
+input
+store opposite
+load opposite
+output
+load H
+output
+input
+store Hypotenus
+load Hypotenus
+output
+load A
+output
+input
+store adjacent
+load adjacent
+output
+load space
+output
+
+/ check if its sine
+load which_trig
+subt S
+store check
+load check
+skipcond 400
+jump cos
+jump loop_sin
+halt
+
+/ calculate sine
+loop_sin, load opposite
+subt Hypotenus
+store opposite
+load count
+add one
+store count
+load opposite
+skipcond 400
+jump loop_sin
+load count
+output
+halt
+
+/check if cosine
+cos, load which_trig
+subt C
+store check
+load check
+skipcond 400
+jump tan
+jump cos_loop
+halt
+
+/calculate cosine
+cos_loop, load adjacent
+subt Hypotenus
+store adjacent
+load count
+add one
+store count
+load adjacent
+skipcond 400
+jump cos_loop
+load count
+output
+halt
+
+/check if tan
+tan, load which_trig
+subt t
+store check
+load check
+skipcond 400
+jump end
+jump loop_tan
+halt
+
+/calculate tan
+loop_tan, load opposite
+subt adjacent
+store opposite
+load count
+add one
+store count
+load opposite
+skipcond 400
+jump loop_tan
+load count
+output
+halt
+
+end, halt
+
+
+
+
+
+Hypotenus, dec 0
+opposite, dec 0
+adjacent, dec 0
+operation, dec 0
+S, dec 115
+O, dec 79
+H, dec 72
+C, dec 99
+trig, dec 84
+t, dec 116
+A, dec 65
+check, dec 0
+count, dec 0
+space, dec 32
+plus, dec 43
+min, dec 45
+multiply, dec 42
+division, dec 47
+mini, dec 60
+maxi, dec 62
+validation, dec 63
+int, dec 0
+num1, dec 0
+num2, dec 0
+sum, dec 0
+var, dec 0
+which_trig, dec 0
+one, dec 1
+two, dec 2
+three, dec 3
+firstside, dec 0
+secside, dec 0
+thirdside, dec 0
+two&3, dec 0
+one&3, dec 0
+one&2, dec 0
+valid, dec 0
+yes, dec 1
+no, dec 0
